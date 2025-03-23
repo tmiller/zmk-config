@@ -1,0 +1,9 @@
+file_format: "1"
+id: wasd_v2
+name: WASD v2
+type: shield
+url: https://github.com/tmiller/zmk-wasd-v2
+requires: [pro_micro]
+features:
+  - keys
+  - studio

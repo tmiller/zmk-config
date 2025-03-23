@@ -1,0 +1,12 @@
+# Copyright (c) 2020 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+if SHIELD_WASD_V2
+
+config ZMK_KEYBOARD_NAME
+    default "WASD v2"
+
+config SPI
+    default y
+    
+endif
