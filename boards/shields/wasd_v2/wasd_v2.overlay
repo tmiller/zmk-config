@@ -32,8 +32,8 @@
 		diode-direction = "col2row";
 
 		col-gpios
-			= <&shifter 0  GPIO_ACTIVE_HIGH>
-			, <&shifter 1  GPIO_ACTIVE_HIGH>
+			= <&pro_micro 10>
+			, <&pro_micro 16>
       ;
 
 		row-gpios
