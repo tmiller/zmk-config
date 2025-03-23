@@ -4,20 +4,55 @@
  * SPDX-License-Identifier: MIT
  */
 
-;
+#include <dt-bindings/zmk/matrix_transform.h>
+#include "wasd_v2-layouts.dtsi"
+
+&physical_layout0 {
+    transform = <&matrix_transform>;
+};
+
+&pro_micro_spi {
+	status = "okay";
+	cs-gpios = <&pro_micro 10 GPIO_ACTIVE_LOW>;
+	shifter: 595@0 {
+		compatible = "zmk,gpio-595";
+		status = "okay";
+		gpio-controller;
+		spi-max-frequency = <200000>;
+		reg = <0>;
+    #gpio-cells = <2>;
+		ngpios = <8>;
+	};
+};
+
+/ {
+	chosen {
+		zmk,kscan = &kscan0;
+		zmk,physical-layout = &physical_layout0;
+	};
+
+	matrix_transform: keymap_transform_0 {
+		compatible = "zmk,matrix-transform";
+		columns = <2>;
+		rows = <2>;
+		map = <
+          RC(0, 0) RC(0, 1)
+          RC(1, 0) RC(1, 1)
+        >;
+    };
 
 	kscan0: kscan_0 {
 		compatible = "zmk,kscan-gpio-matrix";
 		diode-direction = "col2row";
 
 		col-gpios
-			= <&pro_micro 10 GPIO_ACTIVE_HIGH>
-			, <&pro_micro 16 GPIO_ACTIVE_HIGH>
+			= <&shifter 0 GPIO_ACTIVE_HIGH>
+			, <&shifter 1 GPIO_ACTIVE_HIGH>
       ;
 
 		row-gpios
-			= <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			, <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			= <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 			;
 	};
 };
