@@ -34,6 +34,7 @@
 		col-gpios
 			= <&shifter 0  GPIO_ACTIVE_HIGH>
 			, <&shifter 1  GPIO_ACTIVE_HIGH>
+			, <&shifter 2  GPIO_ACTIVE_HIGH>
       ;
 
 		row-gpios
