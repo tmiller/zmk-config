@@ -19,8 +19,8 @@
 
 	matrix_transform: keymap_transform_0 {
 		compatible = "zmk,matrix-transform";
-		columns = <7>;
-		rows = <15>;
+		columns = <2>;
+		rows = <2>;
 		map = <
           RC(0, 0) RC(0, 1)
           RC(1, 0) RC(1, 1)
@@ -29,16 +29,16 @@
 
 	kscan0: kscan_0 {
 		compatible = "zmk,kscan-gpio-matrix";
-		diode-direction = "col2row";
+		diode-direction = "row2col";
 
 		col-gpios
-			= <&shifter 0  GPIO_ACTIVE_HIGH>
-			, <&shifter 1  GPIO_ACTIVE_HIGH>
+			= <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
       ;
 
 		row-gpios
-			= <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			, <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			= <&shifter 0  GPIO_ACTIVE_HIGH>
+			, <&shifter 1  GPIO_ACTIVE_HIGH>
 			;
 	};
 };
