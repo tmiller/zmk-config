@@ -11,6 +11,20 @@
     transform = <&matrix_transform>;
 };
 
+&nice_nano_v2_spi {
+  status = "okay";
+  cs-gpios = <&pro_micro 1 GPIO_ACTIVE_LOW>;
+  shifter: 595@0 {
+    compatible = "zmk,gpio-595";
+      status = "okay";
+      gpio-controller;
+      spi-max-frequency = <200000>;
+      reg = <0>;
+      #gpio-cells = <2>;
+      ngpios = <8>;
+  };
+};
+
 / {
 	chosen {
 		zmk,kscan = &kscan0;
@@ -32,13 +46,13 @@
 		diode-direction = "row2col";
 		
 		col-gpios
-			= <&shifter 0 GPIO_ACTIVE_HIGH>
-			, <&shifter 1 GPIO_ACTIVE_HIGH>
+			= <&pro_micro 0 GPIO_ACTIVE_HIGH>
+			, <&pro_micro 4 GPIO_ACTIVE_HIGH>
 			;
 		
 		row-gpios
-			= <&pro_micro 0  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			, <&pro_micro 4  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			= <&shifter 0  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&shifter 1  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 			;
 	};
 };
